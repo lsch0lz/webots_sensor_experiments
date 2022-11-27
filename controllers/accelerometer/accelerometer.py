@@ -31,6 +31,8 @@ rightMotor.setPosition(float('inf'))
 
 velocity = 0.7 * maxMotorVelocity
 
+count = 0
+
 gyroscope_values = []
 accelerometer_values = []
 while robot.step(timeStep) != -1:
@@ -41,10 +43,18 @@ while robot.step(timeStep) != -1:
     # always drive forward
     leftMotor.setVelocity(velocity)
     rightMotor.setVelocity(velocity)
-
-    if ps0.getValue() > 100:
+    
+    if count > 50:
+        velocity = 0.1
+    
+    if count > 150:
+        velocity = 6
+    
+    if count == 330:
         break
 
+    count += 1
+    print(count)
 for value in accelerometer_values:
     x_axis = value[0]
     y_axis = value[1]

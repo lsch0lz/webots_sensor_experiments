@@ -4,12 +4,15 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/floors/protos/RectangleArena.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/kitchen/fridge/protos/Fridge.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.5773502691896257 0.5773502691896257 0.5773502691896257 2.0944
-  position -1.610921067247658e-05 -1.61092562230478e-05 4.30292959041948
+  orientation -0.19142089904302648 -0.8487488970940782 0.49293341243127886 5.424999672135376
+  position -2.813044579954991 1.2849323438170237 3.665956098390623
+  follow "e-puck"
+  followType "Pan and Tilt Shot"
 }
 TexturedBackground {
 }
@@ -18,14 +21,14 @@ TexturedBackgroundLight {
 RectangleArena {
   floorSize 2 2
 }
+Fridge {
+}
 E-puck {
-  hidden position_0_0 36.3104401801781
-  hidden position_0_1 39.91400160512597
-  hidden linearVelocity_0 0.017040070036282013 0.05347832681948449 -1.297961310568833e-08
-  hidden angularVelocity_0 -0.006661123074255394 0.002131652260377989 0.09533240806142128
-  hidden rotation_1 0 -1 0 1.388671662899421
-  hidden rotation_2 0 1 0 2.214889762048449
-  translation 0.5752433482959685 0.4181640910830225 -6.43412919413295e-05
-  rotation 0.00010652544590157089 2.231592316315056e-05 0.9999999940771643 1.2641227092190275
+  hidden position_0_0 50.07630007007171
+  hidden position_0_1 53.679861525166096
+  hidden rotation_1 0 -1 0 0.18918238736498239
+  hidden rotation_2 0 1 0 3.414379067729404
+  translation 0.101613 0.0300661 1.8
+  rotation -0.010184398410892167 -0.0007663938804168426 -0.9999478439745886 -2.755025307179586
   controller "accelerometer"
 }
