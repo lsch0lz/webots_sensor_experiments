@@ -19,7 +19,6 @@ rightMotor = robot.getDevice("motor.right")
 thymioDistanceSensor = robot.getDevice("prox.thymio")
 customDistanceSensor = robot.getDevice("prox.custom")
 
-
 thymioDistanceSensor.enable(timeStep)
 customDistanceSensor.enable(timeStep)
 
@@ -42,14 +41,18 @@ while robot.step(timeStep) != -1:
     thymio_sensor.append(thymioDistanceSensor.getValue())
     lower_sensor.append(customDistanceSensor.getValue())
 
-    print("thymo: ", thymioDistanceSensor.getValue())
-    print("custom: ", customDistanceSensor.getValue())
+    count += 1
+    print(count)
 
-
+    if (count >= 2650):
+        leftMotor.setVelocity(0)
+        rightMotor.setVelocity(0)
+        break
 
 rows = zip(thymio_sensor, lower_sensor)
 
-with open("../../results/simple_runner.csv", "w") as f:
+with open("../../results/proximity.csv", "w") as f:
     writer = csv.writer(f)
+    writer.writerow(["thymio", "custom"])
     for row in rows:
         writer.writerow(row)
