@@ -44,13 +44,13 @@ while robot.step(timeStep) != -1:
     leftMotor.setVelocity(velocity)
     rightMotor.setVelocity(velocity)
     
-    if count > 50:
+    if count > 100:
         velocity = 0.1
     
     if count > 150:
         velocity = 6
     
-    if count == 330:
+    if count == 420:
         break
 
     count += 1
