@@ -158,7 +158,7 @@ int main(int argc, char *argv[]) {
     filename = "sumo.csv";
     control_step = 64;
   } else {
-    filename = "sumo.csv"; /* name should be "Hoap-2 walk" */
+    filename = "walk.csv"; /* name should be "Hoap-2 walk" */
     control_step = 50;
   }
 
