@@ -19,8 +19,8 @@ rightMotor = robot.getDevice("motor.right")
 sonarDistanceSensor = robot.getDevice("prox.sonar")
 infraredDistanceSensor = robot.getDevice("prox.infrared")
 
-sonarDistanceSensor.enable(timeStep)
 infraredDistanceSensor.enable(timeStep)
+sonarDistanceSensor.enable(timeStep)
 
 # Disable motor PID
 leftMotor.setPosition(float('inf'))
@@ -48,29 +48,29 @@ sonar_sensor_mirror = []
 infrared_sensor_mirror = []
 actual_value_mirror = []
 
-whiteRange = range(0, 351)
-redRange = range(444, 794)
-greenRange = range(887, 1237)
-blueRange = range(1330, 1680)
-mirroredRange = range(1766, 2116)
+whiteRange = range(0, 350)
+redRange = range(354, 703)
+darkRedRange = range(709, 1058)
+glowingRedRange = range(1063, 1412)
+mirroredRange = range(1416, 1770)
 
 count = 0
 
 
 def calculate_travel_distance(count):
+
     if count in whiteRange:
-        return (99 / 35000) * count - (99 / 35000)
+        return count / 349 - (1 / 349)
     elif count in redRange:
-        return (99 / 35000) * (count - 444) - (99 / 35000)
-    elif count in greenRange:
-        return (99 / 35000) * (count - 887) - (99 / 35000)
-    elif count in blueRange:
-        return (99 / 35000) * (count - 1330) - (99 / 35000)
+        return (count - 354) / 349 - (1 / 349)
+    elif count in darkRedRange:
+        return (count - 709) / 349 - (1 / 349)
+    elif count in glowingRedRange:
+        return (count - 1063) / 349 - (1 / 349)
     elif count in mirroredRange:
-        return (99 / 35000) * (count - 1766) - (99 / 35000)
+        return (count - 1416) / 349 - (1 / 349)
     else:
         return 0
-
 
 while robot.step(timeStep) != -1:
 
@@ -79,33 +79,35 @@ while robot.step(timeStep) != -1:
     rightMotor.setVelocity(velocity)
 
     count += 1
-    print(count)
-    traveled_distance = calculate_travel_distance(count)
-    print(traveled_distance)
-    actual_distance = (traveled_distance * math.sin(math.radians(8.11))) / math.sin(math.radians(180 - 8.11 - 90))
+
+    distance = calculate_travel_distance(count)
+
+    print("distance", distance)
+    print(sonarDistanceSensor.getValue())
+    print(infraredDistanceSensor.getValue())
 
     if count in whiteRange:
         sonar_sensor_white.append(sonarDistanceSensor.getValue())
         infrared_sensor_white.append(infraredDistanceSensor.getValue())
-        actual_value_white.append(actual_distance)
+        actual_value_white.append(distance)
     elif count in redRange:
         sonar_sensor_red.append(sonarDistanceSensor.getValue())
         infrared_sensor_red.append(infraredDistanceSensor.getValue())
-        actual_value_red.append(actual_distance)
-    elif count in greenRange:
+        actual_value_red.append(distance)
+    elif count in darkRedRange:
         sonar_sensor_darkred.append(sonarDistanceSensor.getValue())
         infrared_sensor_darkred.append(infraredDistanceSensor.getValue())
-        actual_value_dark_red.append(actual_distance)
-    elif count in blueRange:
+        actual_value_dark_red.append(distance)
+    elif count in glowingRedRange:
         sonar_sensor_glowing_red.append(sonarDistanceSensor.getValue())
         infrared_sensor_glowing_red.append(infraredDistanceSensor.getValue())
-        actual_value_glowing_red.append(actual_distance)
+        actual_value_glowing_red.append(distance)
     elif count in mirroredRange:
         sonar_sensor_mirror.append(sonarDistanceSensor.getValue())
         infrared_sensor_mirror.append(infraredDistanceSensor.getValue())
-        actual_value_mirror.append(actual_distance)
+        actual_value_mirror.append(distance)
 
-    if count >= 2130:
+    if count >= 1766:
         leftMotor.setVelocity(0)
         rightMotor.setVelocity(0)
         break
