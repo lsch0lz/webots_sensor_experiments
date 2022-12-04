@@ -275,7 +275,7 @@ PROTO Thymio2 [
 
       DistanceSensor {
         rotationStep 0.05
-        translation 0.05 -0.06 0.03
+        translation 0.05 -0.06 0.035
         rotation 0 0 -1 1.5708
         name "prox.infrared"
         type "infra-red"
@@ -326,7 +326,7 @@ PROTO Thymio2 [
 
       DistanceSensor {
         rotationStep 0.05
-        translation 0.05 -0.06 0.02
+        translation 0.05 -0.06 0.015
         rotation 0 0 -1 1.5708
         name "prox.sonar"
         type "sonar"
