@@ -1,6 +1,3 @@
-"""Naive maze runner controller."""
-import math
-
 from controller import Robot
 import csv
 
@@ -19,8 +16,8 @@ rightMotor = robot.getDevice("motor.right")
 sonarDistanceSensor = robot.getDevice("prox.sonar")
 infraredDistanceSensor = robot.getDevice("prox.infrared")
 
-infraredDistanceSensor.enable(timeStep)
 sonarDistanceSensor.enable(timeStep)
+infraredDistanceSensor.enable(timeStep)
 
 # Disable motor PID
 leftMotor.setPosition(float('inf'))
@@ -58,7 +55,6 @@ count = 0
 
 
 def calculate_travel_distance(count):
-
     if count in whiteRange:
         return count / 349 - (1 / 349)
     elif count in redRange:
@@ -71,6 +67,7 @@ def calculate_travel_distance(count):
         return (count - 1416) / 349 - (1 / 349)
     else:
         return 0
+
 
 while robot.step(timeStep) != -1:
 
@@ -121,7 +118,8 @@ with open("../../results/proximity.csv", "w") as f:
     writer = csv.writer(f)
     writer.writerow(
         ["sonar_white", "infrared_white", "actual_white", "sonar_red", "infrared_red", "actual_red", "sonar_dark_red",
-         "infrared_dark_red", "actual_dark_red", "sonar_glowing_red", "infrared_glowing_red", "actual_glowing_red", "sonar_mirror",
+         "infrared_dark_red", "actual_dark_red", "sonar_glowing_red", "infrared_glowing_red", "actual_glowing_red",
+         "sonar_mirror",
          "infrared_mirror",
          "actual_mirror"])
     for row in rows:
