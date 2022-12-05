@@ -13,10 +13,10 @@ leftMotor = robot.getDevice("motor.left")
 rightMotor = robot.getDevice("motor.right")
 
 # front sensors
-sonarDistanceSensor = robot.getDevice("prox.sonar")
+laserDistanceSensor = robot.getDevice("prox.laser")
 infraredDistanceSensor = robot.getDevice("prox.infrared")
 
-sonarDistanceSensor.enable(timeStep)
+laserDistanceSensor.enable(timeStep)
 infraredDistanceSensor.enable(timeStep)
 
 # Disable motor PID
@@ -25,23 +25,23 @@ rightMotor.setPosition(float('inf'))
 
 velocity = 0.7 * maxMotorVelocity
 
-sonar_sensor_white = []
+laser_sensor_white = []
 infrared_sensor_white = []
 actual_value_white = []
 
-sonar_sensor_red = []
+laser_sensor_red = []
 infrared_sensor_red = []
 actual_value_red = []
 
-sonar_sensor_darkred = []
+laser_sensor_darkred = []
 infrared_sensor_darkred = []
 actual_value_dark_red = []
 
-sonar_sensor_glowing_red = []
+laser_sensor_glowing_red = []
 infrared_sensor_glowing_red = []
 actual_value_glowing_red = []
 
-sonar_sensor_mirror = []
+laser_sensor_mirror = []
 infrared_sensor_mirror = []
 actual_value_mirror = []
 
@@ -80,27 +80,27 @@ while robot.step(timeStep) != -1:
     distance = calculate_travel_distance(count)
 
     print("distance", distance)
-    print(sonarDistanceSensor.getValue())
+    print(laserDistanceSensor.getValue())
     print(infraredDistanceSensor.getValue())
 
     if count in whiteRange:
-        sonar_sensor_white.append(sonarDistanceSensor.getValue())
+        laser_sensor_white.append(laserDistanceSensor.getValue())
         infrared_sensor_white.append(infraredDistanceSensor.getValue())
         actual_value_white.append(distance)
     elif count in redRange:
-        sonar_sensor_red.append(sonarDistanceSensor.getValue())
+        laser_sensor_red.append(laserDistanceSensor.getValue())
         infrared_sensor_red.append(infraredDistanceSensor.getValue())
         actual_value_red.append(distance)
     elif count in darkRedRange:
-        sonar_sensor_darkred.append(sonarDistanceSensor.getValue())
+        laser_sensor_darkred.append(laserDistanceSensor.getValue())
         infrared_sensor_darkred.append(infraredDistanceSensor.getValue())
         actual_value_dark_red.append(distance)
     elif count in glowingRedRange:
-        sonar_sensor_glowing_red.append(sonarDistanceSensor.getValue())
+        laser_sensor_glowing_red.append(laserDistanceSensor.getValue())
         infrared_sensor_glowing_red.append(infraredDistanceSensor.getValue())
         actual_value_glowing_red.append(distance)
     elif count in mirroredRange:
-        sonar_sensor_mirror.append(sonarDistanceSensor.getValue())
+        laser_sensor_mirror.append(laserDistanceSensor.getValue())
         infrared_sensor_mirror.append(infraredDistanceSensor.getValue())
         actual_value_mirror.append(distance)
 
@@ -109,17 +109,17 @@ while robot.step(timeStep) != -1:
         rightMotor.setVelocity(0)
         break
 
-rows = zip(sonar_sensor_white, infrared_sensor_white, actual_value_white, sonar_sensor_red, infrared_sensor_red,
-           actual_value_red, sonar_sensor_darkred, infrared_sensor_darkred, actual_value_dark_red,
-           sonar_sensor_glowing_red, infrared_sensor_glowing_red, actual_value_glowing_red, sonar_sensor_mirror,
+rows = zip(laser_sensor_white, infrared_sensor_white, actual_value_white, laser_sensor_red, infrared_sensor_red,
+           actual_value_red, laser_sensor_darkred, infrared_sensor_darkred, actual_value_dark_red,
+           laser_sensor_glowing_red, infrared_sensor_glowing_red, actual_value_glowing_red, laser_sensor_mirror,
            infrared_sensor_mirror, actual_value_mirror)
 
 with open("../../results/proximity.csv", "w") as f:
     writer = csv.writer(f)
     writer.writerow(
-        ["sonar_white", "infrared_white", "actual_white", "sonar_red", "infrared_red", "actual_red", "sonar_dark_red",
-         "infrared_dark_red", "actual_dark_red", "sonar_glowing_red", "infrared_glowing_red", "actual_glowing_red",
-         "sonar_mirror",
+        ["laser_white", "infrared_white", "actual_white", "laser_red", "infrared_red", "actual_red", "laser_dark_red",
+         "infrared_dark_red", "actual_dark_red", "laser_glowing_red", "infrared_glowing_red", "actual_glowing_red",
+         "laser_mirror",
          "infrared_mirror",
          "actual_mirror"])
     for row in rows:
