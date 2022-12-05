@@ -8,5 +8,5 @@ userInteractions: 3dContextMenuDisabled::objectMoveDisabled::forceAndTorqueDisab
 orthographicViewHeight: 1
 textFiles: 0 "controllers/simple_runner/simple_runner.py"
 consoles: Console:All:All
-renderingDevicePerspectives: laptop(1):display;0;1.07258;0;0
-renderingDevicePerspectives: laptop:display;0;1.07258;0;0
+renderingDevicePerspectives: laptop(1):display;0;0.809677;0;0
+renderingDevicePerspectives: laptop:display;0;0.809677;0;0

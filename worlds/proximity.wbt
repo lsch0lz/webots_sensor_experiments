@@ -1,0 +1,82 @@
+#VRML_SIM R2022b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/mirror/protos/Mirror.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/apartment_structure/protos/Wall.proto"
+EXTERNPROTO "../protos/Thymio2.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/appearances/protos/Roughcast.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.16800694242130795 0.13550196588541885 0.9764286377096024 1.8071869554118112
+  position -0.3807074840533958 -2.0314867828277388 0.26083167939273993
+  follow "Thymio II"
+  followType "Mounted Shot"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+  castShadows FALSE
+}
+Floor {
+}
+Thymio2 {
+  translation -0.564121 -1.54593 0
+  rotation 0 0 1 1.5708206034813466
+  controller "proximity"
+  supervisor TRUE
+}
+Wall {
+  translation 0 2 1.80966e-14
+  rotation 0 0 1 2.3561944902
+  name "glowing red wall"
+  size 0.01 1.414 0.1
+  appearance Roughcast {
+    colorOverride 1 0 0
+    textureTransform TextureTransform {
+      scale 2.4 1
+    }
+    IBLStrength 50
+  }
+}
+Wall {
+  translation 0 1 2.46469e-14
+  rotation 0 0 1 2.3561944902
+  name "Dark Red wall"
+  size 0.01 1.414 0.1
+  appearance Roughcast {
+    colorOverride 0.5 0 0
+    textureTransform TextureTransform {
+      scale 2.4 1
+    }
+  }
+}
+Wall {
+  translation 0 -1 1.84297e-14
+  rotation 0 0 1 2.3561944902
+  name "White Base Wall"
+  size 0.01 1.4142 0.1
+}
+Wall {
+  translation 0 0 1.84297e-14
+  rotation 0 0 1 2.3561944902
+  name "Red Wall"
+  size 0.01 1.414 0.1
+  appearance Roughcast {
+    colorOverride 1 0 0
+    textureTransform TextureTransform {
+      scale 2.4 1
+    }
+  }
+}
+Mirror {
+  translation 0 3 -4.10956e-14
+  rotation -0.8628571789091403 -0.35740507410616273 -0.3574060741063701 -1.7177653071795866
+  controller "<none>"
+  width 1.414
+  height 0.1
+  frameThickness 0.0001
+}
